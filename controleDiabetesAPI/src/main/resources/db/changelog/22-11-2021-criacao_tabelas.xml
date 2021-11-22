@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog  
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"  
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+                      
+    <changeSet  id="1"  author="julio.oliveira">  
+      	<sql>
+			CREATE TABLE ALIMENTO ( 
+				COD_ALIMENTO int IDENTITY (1,1) NOT NULL, 
+				CONSTRAINT PK_ALIMENTO PRIMARY KEY CLUSTERED (COD_ALIMENTO),
+				DES_RESUMIDA varchar(25) NOT NULL,
+				DES_COMPLETA varchar(50) NOT NULL,
+				QTD_CARBOIDRATO numeric(5,2) NOT NULL,
+				QTD_GRAMA numeric(5,2) NOT NULL,
+				QTD_CARBOIDRATO_GRAMA numeric(5,2) NOT NULL,
+				DAT_CADASTRO datetime NOT NULL,
+				DAT_ALTERACAO datetime,
+				USUARIO varchar(100) NOT NULL
+			);  
+		
+			CREATE TABLE TIPO_CALCULO_INSULINA (
+				COD_TIPO_CALCULO_INSULINA int IDENTITY (1,1) NOT NULL,
+				CONSTRAINT PK_TIPO_CALCULO_INSULINA PRIMARY KEY CLUSTERED (COD_TIPO_CALCULO_INSULINA),
+				IND_TIPO_CALCULO varchar(3) NOT NULL,
+				IND_TIPO_HORARIO varchar(3) NOT NULL,
+				VLR_GLICEMIA_IDEAL int NOT NULL,
+				VLR_SENSOR_VARIACAO int NOT NULL,
+				DAT_CADASTRO datetime NOT NULL,
+				DAT_ALTERACAO datetime,
+				USUARIO varchar(100) NOT NULL
+			);  
+			
+			CREATE TABLE GLICEMIA (
+				COD_GLICEMIA int IDENTITY (1,1) NOT NULL,
+				CONSTRAINT PK_GLICEMIA PRIMARY KEY  CLUSTERED (COD_GLICEMIA),
+				VLR_GLICEMIA numeric(5,2),
+				DAT_CADASTRO datetime NOT NULL,
+				DAT_ALTERACAO datetime,
+				USUARIO varchar(100) NOT NULL
+			);
+		
+			CREATE TABLE CALCULO_INSULINA (
+				COD_CALCULO_INSULINA int  IDENTITY (1,1) NOT NULL ,
+				CONSTRAINT PK_CALCULO_INSULINA PRIMARY KEY CLUSTERED (COD_CALCULO_INSULINA),
+				COD_TIPO_CALCULO_INSULINA int NOT NULL, CONSTRAINT FK_CALC_INS_TIPO_CALC_INS FOREIGN KEY (COD_TIPO_CALCULO_INSULINA)
+			        REFERENCES TIPO_CALCULO_INSULINA (COD_TIPO_CALCULO_INSULINA),
+				COD_GLICEMIA int, CONSTRAINT FK_CALCULO_INSULINA_GLICEMIA FOREIGN KEY (COD_GLICEMIA) 
+			        REFERENCES GLICEMIA (COD_GLICEMIA),
+				COD_ALIMENTO int, CONSTRAINT FK_CALCULO_INSULINA_ALIMENTO FOREIGN KEY (COD_ALIMENTO)
+			        REFERENCES ALIMENTO (COD_ALIMENTO), 
+				VLR_RESULTADO numeric(5,2) NOT NULL,
+				DAT_CADASTRO datetime NOT NULL,
+				DAT_ALTERACAO datetime,
+				USUARIO varchar(100) NOT NULL
+			);  
+		</sql>
+    </changeSet>  
+</databaseChangeLog>
+
+
