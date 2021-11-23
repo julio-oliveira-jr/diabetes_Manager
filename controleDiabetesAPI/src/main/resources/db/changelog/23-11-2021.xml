@@ -7,9 +7,14 @@
                       
     <changeSet  id="1"  author="julio.oliveira">  
       	<sql>
-      		ALTER TABLE GLIMECIA ADD DAT_GLICEMIA datetime NOT NULL 		  
+      		ALTER TABLE GLICEMIA ADD DAT_GLICEMIA datetime NOT NULL 		  
 		</sql>
-    </changeSet>  
+    </changeSet>
+    <changeSet  id="2"  author="julio.oliveira">  
+      	<sql>
+      		ALTER TABLE GLICEMIA ADD HR_GLICEMIA varchar(4) NOT NULL 		  
+		</sql>
+    </changeSet>    
 </databaseChangeLog>
 
 

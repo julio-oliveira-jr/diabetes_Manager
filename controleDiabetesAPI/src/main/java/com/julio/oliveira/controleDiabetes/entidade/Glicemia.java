@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -27,7 +28,11 @@ public class Glicemia extends ClasseBase {
 	@Column(name="DAT_GLICEMIA")
 	@NotNull
 	private LocalDateTime datGlicemia;
-
+	
+	@Column(name="HR_GLICEMIA")
+	@NotBlank
+	private String hrGlicemia;
+	
 	//CONSTRUTORES
 	public Glicemia() {
 	}
