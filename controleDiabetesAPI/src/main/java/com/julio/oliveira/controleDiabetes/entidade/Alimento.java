@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.julio.oliveira.controleDiabetes.utils.StringUtils;
+
 @Entity
 public class Alimento extends ClasseBase {
 	
@@ -63,7 +65,7 @@ public class Alimento extends ClasseBase {
 	}
 
 	public void setDesResumida(String desResumida) {
-		this.desResumida = desResumida;
+		this.desResumida = StringUtils.ehStringVaziaOuNull(desResumida) ? desResumida.substring(0, 24) : desResumida;
 	}
 
 	public String getDesCompleta() {
