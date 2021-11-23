@@ -1,5 +1,7 @@
 package com.julio.oliveira.controleDiabetes.entidade;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +23,10 @@ public class Glicemia extends ClasseBase {
 	@Column(name="VLR_GLICEMIA")
 	@NotNull
 	private Integer vlrGlicemia;
+	
+	@Column(name="DAT_GLICEMIA")
+	@NotNull
+	private LocalDateTime datGlicemia;
 
 	//CONSTRUTORES
 	public Glicemia() {
@@ -47,5 +53,13 @@ public class Glicemia extends ClasseBase {
 		this.vlrGlicemia = vlrGlicemia;
 	}
 
+	public LocalDateTime getDatGlicemia() {
+		return datGlicemia;
+	}
+
+	public void setDatGlicemia(LocalDateTime datGlicemia) {
+		this.datGlicemia = datGlicemia;
+	}
+	
 	//HASHCODE E EQUALS
 }
