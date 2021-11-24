@@ -3,10 +3,12 @@ package com.julio.oliveira.controleDiabetes.entidade;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class EntidadeBase {
+@MappedSuperclass
+public abstract class EntidadeBase {
 
 	@Column(name="DAT_CADASTRO")
 	@NotNull

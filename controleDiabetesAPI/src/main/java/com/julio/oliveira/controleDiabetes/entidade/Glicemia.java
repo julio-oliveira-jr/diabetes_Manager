@@ -1,16 +1,19 @@
 package com.julio.oliveira.controleDiabetes.entidade;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Inheritance
 public class Glicemia extends EntidadeBase {
 	
 	//TODO COLOCAR OS MAPEAMENTOS COMUNS EM UMA ENTIDADE BASE
@@ -75,4 +78,20 @@ public class Glicemia extends EntidadeBase {
 	}
 	
 	//HASHCODE E EQUALS
+	@Override
+	public int hashCode() {
+		return Objects.hash(datGlicemia, hrGlicemia);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Glicemia other = (Glicemia) obj;
+		return Objects.equals(datGlicemia, other.datGlicemia) && Objects.equals(hrGlicemia, other.hrGlicemia);
+	}
 }
