@@ -21,7 +21,7 @@ public class GlicemiaControlador {
 	private GlicemiaServico servico;
 	
 	@PostMapping()
-	public Glicemia salvar(@RequestBody Glicemia glicemia) {
+	public Glicemia salvar(@RequestBody Glicemia glicemia) throws Exception {
 		return servico.salvar(glicemia);
 	}
 	
@@ -39,6 +39,4 @@ public class GlicemiaControlador {
 	public void excluirGlicemia(@PathVariable Integer codGlicemia) {
 		servico.excluir(codGlicemia);
 	}
-	
-	
 }
