@@ -3,13 +3,13 @@
     <q-card>
       <div class="row">
       <div class="col-sm-12 col-md-3 q-pa-sm">
-          <q-input v-model="glicemia.datGlicemia" filled type="date" hint="Data"/>
+          <q-input outlined v-model="glicemia.datGlicemia" filled type="date" hint="Data" :error="!validaData" error-message="Data é obrigatória!"/>
         </div>
         <div class="col-sm-12 col-md-3 q-pa-sm">
-          <q-input v-model="glicemia.hrGlicemia" filled type="time" hint="Horário"/>
+          <q-input outlined v-model="glicemia.hrGlicemia" filled type="time" hint="Horário" :error="!validaHorario" error-message="Horário é obrigatório!"/>
         </div>
         <div class="col-sm-12 col-md-6 q-pa-sm">
-          <q-input outlined v-model="glicemia.vlrGlicemia" label="Valor" type="numeric"></q-input>
+          <q-input outlined v-model="glicemia.vlrGlicemia" label="Valor" type="numeric" :error="!validaValor" error-message="Valor é obrigatório!"></q-input>
         </div>
       </div>
       <div class="row">
@@ -37,28 +37,67 @@ export default {
       glicemia: {
         datGlicemia: null,
         hrGlicemia: null
-      }
+      },
+      validaData: true,
+      validaHorario: true,
+      validaValor: true
     }
   },
   methods: {
     salvar () {
-      axios.post('http://localhost:8082/glicemia/', this.setObjeto())
-        .then(resp => {
-          alert("Registro incluído com sucesso.");
-        })
-        .catch(err => {
-        })
+      if(this.validar()){
+        axios.post('http://localhost:8082/glicemia/', this.setObjeto())
+          .then(resp => {
+            alert("Registro incluído com sucesso.");
+          })
+          .catch(err => {
+          })
+      }
     },
+    //TODO - IMPLEMENTAR UM VALIDAR NO UTILS
+    validar(){
+      var valida = true
+      this.validaValor = true
+      this.validaHorario = true
+      this.validaData = true
+
+      if(this.glicemia.vlrGlicemia == null || this.glicemia.vlrGlicemia == undefined ||  this.glicemia.vlrGlicemia == ''){
+        valida = false
+        this.validaValor = false
+      }
+
+      if(this.glicemia.datGlicemia == null || this.glicemia.datGlicemia == undefined ||  this.glicemia.datGlicemia == ''){
+        valida = false
+        this.validaData = false
+      }
+
+      if(this.glicemia.hrGlicemia == null || this.glicemia.hrGlicemia == undefined ||  this.glicemia.hrGlicemia == ''){
+        valida = false
+        this.validaHorario = false
+      }
+
+      return valida
+    },
+     //TODO - IMPLEMENTAR UMA FORMATAÇÃO DE DATA NO UTILS
     setObjeto(){
-      const glicemiaFormatada = {
+      var datGlicemia = this.glicemia.datGlicemia
+
+      datGlicemia = datGlicemia.replace(/\.|\-/g, '/');
+
+      var aux = datGlicemia.split("/")
+
+      datGlicemia = new Date(aux[0], aux[1], aux[2])
+
+      const glicemia = {
         vlrGlicemia: this.glicemia.vlrGlicemia,
-        datGlicemia: new Date(),
+        datGlicemia: datGlicemia,
         datCadastro: new Date(),
-        datAlteracao: new Date(),
+        hrGlicemia: this.glicemia.hrGlicemia,
+        datAlteracao: null,
         usuario: "Caju" //TODO - FAZER LOGIN USUÁRIO, AUTENTICAÇÃO, AUTORIZAÇÃO, ETC
       }
 
-      return glicemiaFormatada
+      return glicemia
     },
     carregamentoInicial(){
     }
