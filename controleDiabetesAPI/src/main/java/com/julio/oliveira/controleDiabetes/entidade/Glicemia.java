@@ -65,6 +65,14 @@ public class Glicemia extends EntidadeBase {
 	public void setDatGlicemia(LocalDateTime datGlicemia) {
 		this.datGlicemia = datGlicemia;
 	}
+
+	public String getHrGlicemia() {
+		return hrGlicemia;
+	}
+
+	public void setHrGlicemia(String hrGlicemia) {
+		this.hrGlicemia = hrGlicemia;
+	}
 	
 	//HASHCODE E EQUALS
 }
