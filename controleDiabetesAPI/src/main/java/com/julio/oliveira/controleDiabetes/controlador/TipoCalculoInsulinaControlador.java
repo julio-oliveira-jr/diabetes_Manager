@@ -15,7 +15,7 @@ import com.julio.oliveira.controleDiabetes.servico.TipoCalculoInsulinaServico;
 
 @RestController
 @RequestMapping("/tipoCalculoInsulina")
-public class TipoCalculoInsulinaControlador extends ControladorBase {
+public class TipoCalculoInsulinaControlador {
 	//SERVICOS
 	@Autowired
 	private TipoCalculoInsulinaServico servico;

@@ -15,7 +15,7 @@ import com.julio.oliveira.controleDiabetes.servico.GlicemiaServico;
 
 @RestController
 @RequestMapping("/glicemia")
-public class GlicemiaControlador extends ControladorBase {
+public class GlicemiaControlador {
 	//SERVICOS
 	@Autowired
 	private GlicemiaServico servico;

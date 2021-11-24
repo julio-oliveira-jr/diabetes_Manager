@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class TipoCalculoInsulina extends ClasseBase {
+public class TipoCalculoInsulina extends EntidadeBase {
 	
 	//TODO COLOCAR OS MAPEAMENTOS COMUNS EM UMA ENTIDADE BASE
 	

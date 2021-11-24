@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Glicemia extends ClasseBase {
+public class Glicemia extends EntidadeBase {
 	
 	//TODO COLOCAR OS MAPEAMENTOS COMUNS EM UMA ENTIDADE BASE
 	

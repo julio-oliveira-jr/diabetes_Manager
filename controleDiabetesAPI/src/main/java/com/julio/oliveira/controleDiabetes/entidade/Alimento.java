@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 import com.julio.oliveira.controleDiabetes.utils.StringUtils;
 
 @Entity
-public class Alimento extends ClasseBase {
+public class Alimento extends EntidadeBase {
 	
 	//TODO COLOCAR OS MAPEAMENTOS COMUNS EM UMA ENTIDADE BASE
 	

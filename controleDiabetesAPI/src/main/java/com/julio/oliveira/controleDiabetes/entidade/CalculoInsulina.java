@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class CalculoInsulina extends ClasseBase {
+public class CalculoInsulina extends EntidadeBase {
 	
 	//TODO COLOCAR OS MAPEAMENTOS COMUNS EM UMA ENTIDADE BASE
 	
