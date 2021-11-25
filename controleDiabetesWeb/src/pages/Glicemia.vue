@@ -3,13 +3,13 @@
     <q-card>
       <div class="row">
       <div class="col-sm-12 col-md-3 q-pa-sm">
-          <q-input outlined v-model="glicemia.datGlicemia" filled type="date" hint="Data" :error="!validaData" error-message="Data é obrigatória!"/>
+          <q-input outlined v-model="glicemia.datGlicemia" type="date" hint="Data" :error="!validaData" error-message="Data é obrigatória!"/>
         </div>
         <div class="col-sm-12 col-md-3 q-pa-sm">
-          <q-input outlined v-model="glicemia.hrGlicemia" filled type="time" hint="Horário" :error="!validaHorario" error-message="Horário é obrigatório!"/>
+          <q-input outlined v-model="glicemia.hrGlicemia" type="time" hint="Horário" :error="!validaHorario" error-message="Horário é obrigatório!"/>
         </div>
         <div class="col-sm-12 col-md-6 q-pa-sm">
-          <q-input outlined v-model="glicemia.vlrGlicemia" label="Valor" type="numeric" :error="!validaValor" error-message="Valor é obrigatório!"></q-input>
+          <q-input outlined v-model="glicemia.vlrGlicemia" label="Valor" type="numeric" :error="!validaValor" error-message="Valor é obrigatório!" maxlength="3"></q-input>
         </div>
       </div>
       <div class="row">
