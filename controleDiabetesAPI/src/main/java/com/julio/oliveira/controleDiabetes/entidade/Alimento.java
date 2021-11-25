@@ -35,11 +35,11 @@ public class Alimento extends EntidadeBase {
 	
 	@Column(name="QTD_CARBOIDRATO")
 	@NotNull
-	private BigDecimal qtdCarbouidrato;
+	private BigDecimal qtdCarboidrato;
 	
-	@Column(name="QTD_GRAMA")
+	@Column(name="QTD_ALIMENTO")
 	@NotNull
-	private BigDecimal qtdGrama;
+	private BigDecimal qtdAlimento;
 	
 	@Column(name="QTD_CARBOIDRATO__GRAMA")
 	@NotNull
@@ -79,19 +79,27 @@ public class Alimento extends EntidadeBase {
 	}
 
 	public BigDecimal getQtdCarbouidrato() {
-		return qtdCarbouidrato;
+		return qtdCarboidrato;
 	}
 
 	public void setQtdCarbouidrato(BigDecimal qtdCarbouidrato) {
-		this.qtdCarbouidrato = qtdCarbouidrato;
+		this.qtdCarboidrato = qtdCarbouidrato;
 	}
 
-	public BigDecimal getQtdGrama() {
-		return qtdGrama;
+	public BigDecimal getQtdCarboidrato() {
+		return qtdCarboidrato;
 	}
 
-	public void setQtdGrama(BigDecimal qtdGrama) {
-		this.qtdGrama = qtdGrama;
+	public void setQtdCarboidrato(BigDecimal qtdCarboidrato) {
+		this.qtdCarboidrato = qtdCarboidrato;
+	}
+
+	public BigDecimal getQtdAlimento() {
+		return qtdAlimento;
+	}
+
+	public void setQtdAlimento(BigDecimal qtdAlimento) {
+		this.qtdAlimento = qtdAlimento;
 	}
 
 	public BigDecimal getQtdCarboidratoGrama() {
