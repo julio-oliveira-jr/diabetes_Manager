@@ -2,7 +2,7 @@
   <div class="q-pa-md">
     <div class="row">
       <div class="col-sm-12 col-md-8">
-        <q-date v-model="fitro" range />
+        <q-date v-model="filtro" range/>
       </div>
     </div>
    <div class="q-pt-md">
@@ -20,13 +20,16 @@
 <script>
 
 import axios from 'axios';
+import { ref } from 'vue';
 
 export default {
   name: 'GlicemiaPesquisa',
   components: {},
   data: function () {
     return {
-      filtro: "",
+      filtro: '',
+      datLimInf: null,
+      datLimSup: null,
       colunas: [
         { name: 'datGlicemia', align: 'left', label: 'Data', field: 'datGlicemia', sortable: true },
         { name: 'hrGlicemia', align: 'left', label: 'Horário', field: 'hrGlicemia', sortable: true },
@@ -42,39 +45,45 @@ export default {
           style: 'max-width: 100px',
           headerClasses: 'bg-primary text-white'
         },
-        { name: 'datCadastro', align: 'left', label: 'Data de cadastro', field: 'datCadastro', sortable: true },
-        { name: 'datAtualizacao', align: 'left', label: 'Data de atualização', field: 'datAtualizacao', sortable: true },
-        { name: 'usuario', align: 'left', label: 'Usuário', field: 'usuario', sortable: true},
+        { name: 'datAtualizacao', align: 'left', label: 'Data de atualização', field: 'datAtualizacao', sortable: true }
       ],
-      conteudo: [
-        {
-          datGlicemia: '13/04/2021',
-          hrGlicemia: '11:25',
-          datCadastro: '13/04/2021 11:25',
-          vlrGlicemia: 159,
-          datAtualizacao: '13/04/2021 11:25',
-          usuario: 'Julio'
-        },
-        {
-          datGlicemia: '13/04/2021',
-          hrGlicemia: '11:25',
-          datCadastro: '13/04/2021',
-          vlrGlicemia: 237,
-          datAtualizacao: '13/04/2021 11:25',
-          usuario: 'Camilla'
-        },
-        {
-          datGlicemia: '13/04/2021',
-          hrGlicemia: '11:25',
-          datCadastro: '13/04/2021 11:25',
-          vlrGlicemia: 262,
-          datAtualizacao: '13/04/2021 11:25',
-          usuario: 'Camilla'
-        }
-      ]
+      conteudo: []
     }
   },
-  methods: {},
-  mounted() {}
+  methods: {
+    buscarGlicemias(){
+      console.log('buscando glicemias')
+      this.datLimInf = this.filtro.from == undefined ? null : this.filtro.from
+      this.datLimSup = this.filtro.to == undefined ? null : this.filtro.to
+
+      var url = `http://localhost:8082/glicemia/buscarGlicemias`
+      
+      if(this.datLimInf != null){
+        url += `?datLimInf=${this.datLimInf}`
+      }
+
+      if(this.datLimInf != null && this.datLimSup != null){
+        url += `&datLimSup=${this.datLimSup}`
+      }
+
+      axios.get(url)
+          .then(resp => {
+            this.conteudo = resp
+          })
+          .catch(err => {
+          })
+    },
+    carregamentoInicial(){
+      this.buscarGlicemias()
+    }
+  },
+  mounted() {
+    this.buscarGlicemias()
+  },
+  watch: {
+    filtro: function () {
+      this.buscarGlicemias()
+    }
+  }
 }
 </script>

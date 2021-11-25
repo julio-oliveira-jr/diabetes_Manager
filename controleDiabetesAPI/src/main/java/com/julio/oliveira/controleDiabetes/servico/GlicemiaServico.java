@@ -1,6 +1,7 @@
 package com.julio.oliveira.controleDiabetes.servico;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,14 @@ public class GlicemiaServico {
 	
 	public Glicemia buscarGlicemia(Integer codGlicemia) {
 		return temGlicemia(codGlicemia) ? null : repositorio.findById(codGlicemia).get();
+	}
+	
+	public List<Glicemia> buscarGlicemias(LocalDateTime datLimInf, LocalDateTime datLimSup) {
+		return (datLimInf == null && datLimSup == null) ? this.buscarGlicemiasSemana() : repositorio.buscarPeriodo(datLimInf, datLimSup);
+	}
+	
+	public List<Glicemia> buscarGlicemiasSemana(){
+		return repositorio.buscarSemana(LocalDateTime.now(), LocalDateTime.now().minusDays(7));
 	}
 	
 	public void excluir(Integer codGlicemia) {
