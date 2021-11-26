@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,8 +42,8 @@ public class GlicemiaControlador {
 	}
 	
 	@GetMapping("/buscarGlicemias")
-	public List<Glicemia> buscarGlicemias(@RequestParam(value="datLimInf", required = false) @DateTimeFormat(pattern = "yyyy/MM/dd") LocalDateTime datLimInf, @RequestParam(value="datLimSup", required = false) @DateTimeFormat(pattern = "yyyy/MM/dd") LocalDateTime datLimSup) {
-		return servico.buscarGlicemias(datLimInf, datLimSup);
+	public ResponseEntity<List<Glicemia>> buscarGlicemias(@RequestParam(value="datLimInf", required = false) LocalDateTime datLimInf, @RequestParam(value="datLimSup", required = false) LocalDateTime datLimSup) {
+		return ResponseEntity.ok(servico.buscarGlicemias(datLimInf, datLimSup));
 	}
 	
 	@DeleteMapping("/{codGlicemia}")

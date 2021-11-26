@@ -45,7 +45,7 @@ public class GlicemiaServico {
 	}
 	
 	public List<Glicemia> buscarGlicemiasSemana(){
-		return repositorio.buscarSemana(LocalDateTime.now(), LocalDateTime.now().minusDays(7));
+		return repositorio.buscarSemana(LocalDateTime.now().plusDays(1), LocalDateTime.now().minusDays(7));
 	}
 	
 	public void excluir(Integer codGlicemia) {
