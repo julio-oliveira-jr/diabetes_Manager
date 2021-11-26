@@ -68,7 +68,7 @@ export default {
 
       axios.get(url)
           .then(resp => {
-            this.conteudo = resp
+            this.conteudo = resp.data
           })
           .catch(err => {
           })

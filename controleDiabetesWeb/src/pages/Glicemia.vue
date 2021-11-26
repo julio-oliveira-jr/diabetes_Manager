@@ -86,7 +86,7 @@ export default {
 
       var aux = datGlicemia.split("/")
 
-      datGlicemia = new Date(aux[0], aux[1], aux[2])
+      datGlicemia = new Date(aux[0], aux[1]-1, aux[2])
 
       const glicemia = {
         vlrGlicemia: this.glicemia.vlrGlicemia,
