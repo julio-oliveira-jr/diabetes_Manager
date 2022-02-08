@@ -91,9 +91,10 @@ export default {
       const glicemia = {
         vlrGlicemia: this.glicemia.vlrGlicemia,
         datGlicemia: datGlicemia,
-        datCadastro: new Date(),
+         // TODO - IMPLEMENTAR UM UNDEFINED TO NULL
+        datCadastro: this.glicemia.datCadastro == undefined ? null : this.glicemia.datCadastro,
         hrGlicemia: this.glicemia.hrGlicemia,
-        datAlteracao: null,
+        datAlteracao: this.glicemia.datAlteracao == undefined ? null : this.glicemia.datAlteracao,
         usuario: "Caju" //TODO - FAZER LOGIN USUÁRIO, AUTENTICAÇÃO, AUTORIZAÇÃO, ETC
       }
 

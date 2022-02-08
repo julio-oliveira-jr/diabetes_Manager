@@ -86,8 +86,9 @@ export default {
         qtdCarboidrato: this.alimento.qtdCarboidrato,
         qtdAlimento: this.alimento.qtdAlimento,
         qtdCarboidratoGrama: this.alimento.qtdCarboidratoGrama,
-        datCadastro: new Date(),
-        datAlteracao: null,
+        // TODO - IMPLEMENTAR UM UNDEFINED TO NULL
+        datCadastro: this.alimento.datCadastro == undefined ? null : this.alimento.datCadastro,
+        datAlteracao: this.alimento.datAlteracao == undefined ? null : this.alimento.datAlteracao,
         usuario: "Caju" //TODO - FAZER LOGIN USUÁRIO, AUTENTICAÇÃO, AUTORIZAÇÃO, ETC
       }
 
