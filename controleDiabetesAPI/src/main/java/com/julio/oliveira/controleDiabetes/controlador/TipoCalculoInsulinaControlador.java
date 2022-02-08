@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.julio.oliveira.controleDiabetes.entidade.TipoCalculoInsulina;
+import com.julio.oliveira.controleDiabetes.enums.TipoCalculoEnum;
+import com.julio.oliveira.controleDiabetes.enums.TipoHorarioEnum;
 import com.julio.oliveira.controleDiabetes.servico.TipoCalculoInsulinaServico;
 
 @RestController
@@ -38,6 +40,16 @@ public class TipoCalculoInsulinaControlador {
 	@DeleteMapping("/{codTipoCalculoInsulina}")
 	public void excluirTipoCalculoInsulina(@PathVariable Integer codTipoCalculoInsulina) {
 		servico.excluir(codTipoCalculoInsulina);
+	}
+	
+	@GetMapping("/buscarTipoCalculoEnum")
+	public TipoCalculoEnum[] buscarTipoCalculoEnum() {
+		return TipoCalculoEnum.values();
+	}
+	
+	@GetMapping("/buscarTipoHorarioEnum")
+	public TipoHorarioEnum[] buscarHorarioEnum() {
+		return TipoHorarioEnum.values();
 	}
 	
 	
