@@ -6,7 +6,8 @@ const routes = [
       { path: '/glicemia', component: () => import('src/pages/Glicemia.vue') },
       { path: '/glicemiaPesquisa', component: () => import('pages/GlicemiaPesquisa.vue') },
       { path: '/alimento', component: () => import('src/pages/Alimento.vue') },
-      { path: '/alimentoPesquisa', component: () => import('pages/AlimentoPesquisa.vue') }
+      { path: '/alimentoPesquisa', component: () => import('pages/AlimentoPesquisa.vue') },
+      { path: '/tipoCalculoInsulina', component: () => import('pages/tipoCalculoInsulina.vue') }
     ]
   },
 
