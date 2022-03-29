@@ -3,11 +3,11 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '/glicemia', component: () => import('src/pages/Glicemia.vue') },
-      { path: '/glicemiaPesquisa', component: () => import('pages/GlicemiaPesquisa.vue') },
-      { path: '/alimento', component: () => import('src/pages/Alimento.vue') },
-      { path: '/alimentoPesquisa', component: () => import('pages/AlimentoPesquisa.vue') },
-      { path: '/tipoCalculoInsulina', component: () => import('pages/tipoCalculoInsulina.vue') }
+      { path: '/glucose', component: () => import('src/pages/Glucose.vue') },
+      { path: '/glucoseSearch', component: () => import('pages/GlucoseSearch.vue') },
+      { path: '/food', component: () => import('src/pages/Food.vue') },
+      { path: '/foodSearch', component: () => import('pages/FoodSearch.vue') },
+      { path: '/insulinCalculationType', component: () => import('pages/InsulinCalculationType.vue') }
     ]
   },
 

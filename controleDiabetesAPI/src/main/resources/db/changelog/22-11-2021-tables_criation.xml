@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog  
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"  
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+                      
+    <changeSet  id="1"  author="julio.oliveira">  
+      	<sql>
+			CREATE TABLE FOOD ( 
+				FOOD_ID int IDENTITY (1,1) NOT NULL, 
+				CONSTRAINT PK_FOOD PRIMARY KEY CLUSTERED (FOOD_ID),
+				SUMMARY_DESCRIPTION varchar(25) NOT NULL,
+				DESCRIPTION varchar(50) NOT NULL,
+				CARBOHYDRATE_QTY numeric(5,2) NOT NULL,
+				GRAM_QTY numeric(5,2) NOT NULL,
+				CARBOHYDRATE_GRAM_QTY numeric(5,2) NOT NULL,
+				REGISTER_DATE datetime NOT NULL,
+				LAST_UPDATE_DATE datetime,
+				USER_ID varchar(100) NOT NULL
+			);  
+		
+			CREATE TABLE INSULIN_CALCULATION_TYPE (
+				INSULIN_CALCULATION_TYPE_ID int IDENTITY (1,1) NOT NULL,
+				CONSTRAINT PK_INSULIN_CALCULATION_TYPE PRIMARY KEY CLUSTERED (INSULIN_CALCULATION_TYPE_ID),
+				CALCULATION_TYPE_IND varchar(3) NOT NULL,
+				TIME_TYPE_IND varchar(3) NOT NULL,
+				OPTIMAL_GLUCOSE_VALUE int NOT NULL,
+				VARIATION_SENSOR_VALUE int NOT NULL,
+				REGISTER_DATE datetime NOT NULL,
+				LAST_UPDATE_DATE datetime,
+				USER_ID varchar(100) NOT NULL
+			);  
+			
+			CREATE TABLE GLUCOSE (
+				GLUCOSE_ID int IDENTITY (1,1) NOT NULL,
+				CONSTRAINT PK_GLUCOSE PRIMARY KEY  CLUSTERED (GLUCOSE_ID),
+				GLUCOSE_VALUE numeric(5,2),
+				REGISTER_DATE datetime NOT NULL,
+				LAST_UPDATE_DATE datetime,
+				USER_ID varchar(100) NOT NULL
+			);
+		
+			CREATE TABLE INSULIN_CALCULATION (
+				INSULIN_CALCULATION_ID int  IDENTITY (1,1) NOT NULL ,
+				CONSTRAINT PK_INSULIN_CALCULATION PRIMARY KEY CLUSTERED (INSULIN_CALCULATION_ID),
+				INSULIN_CALCULATION_TYPE_ID int NOT NULL, CONSTRAINT FK_INS_CALC_INS_CALC_TYPE FOREIGN KEY (INSULIN_CALCULATION_TYPE_ID)
+			        REFERENCES INSULIN_CALCULATION_TYPE (INSULIN_CALCULATION_TYPE_ID),
+				GLUCOSE_ID int, CONSTRAINT FK_INS_CALC_GLUCOSE FOREIGN KEY (GLUCOSE_ID) 
+			        REFERENCES GLUCOSE (GLUCOSE_ID),
+				FOOD_ID int, CONSTRAINT FK_INS_CALC_FOOD FOREIGN KEY (FOOD_ID)
+			        REFERENCES FOOD (FOOD_ID), 
+				RESULT_VALUE numeric(5,2) NOT NULL,
+				REGISTER_DATE datetime NOT NULL,
+				LAST_UPDATE_DATE datetime,
+				USER_ID varchar(100) NOT NULL
+			);  
+		</sql>
+    </changeSet>  
+</databaseChangeLog>
+
+

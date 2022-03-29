@@ -7,7 +7,7 @@
                       
     <changeSet  id="1"  author="julio.oliveira">  
       	<sql>
-      		exec sp_rename 'ALIMENTO.[QTD_GRAMA]', 'QTD_ALIMENTO', 'column'		  
+      		exec sp_rename 'FOOD.[GRAM_QTY]', 'FOOD_QTY', 'column'		  
 		</sql>
     </changeSet>    
 </databaseChangeLog>

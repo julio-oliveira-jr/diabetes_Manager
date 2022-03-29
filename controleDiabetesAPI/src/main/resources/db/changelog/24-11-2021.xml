@@ -7,7 +7,7 @@
                       
     <changeSet  id="1"  author="julio.oliveira">  
       	<sql>
-      		ALTER TABLE GLICEMIA ALTER COLUMN HR_GLICEMIA varchar(5) NOT NULL 		  
+      		ALTER TABLE GLUCOSE ALTER COLUMN GLUCOSE_HOUR varchar(5) NOT NULL 		  
 		</sql>
     </changeSet>    
 </databaseChangeLog>
