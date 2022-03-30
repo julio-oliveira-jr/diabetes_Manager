@@ -23,7 +23,7 @@ import axios from 'axios';
 import { ref } from 'vue';
 
 export default {
-  name: 'GlicemiaPesquisa',
+  name: 'GlucoseSearch',
   components: {},
   data: function () {
     return {

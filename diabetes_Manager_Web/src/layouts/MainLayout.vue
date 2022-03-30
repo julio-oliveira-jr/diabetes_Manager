@@ -8,11 +8,11 @@
           round
           icon="menu"
           aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
+          @click="toggleLeftDrawer"
         />
 
         <q-toolbar-title>
-          Controle de Diabetes
+          Quasar App
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
@@ -23,15 +23,14 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      content-class="bg-grey-1"
     >
       <q-list>
         <q-item-label
           header
-          class="text-grey-8"
         >
           Essential Links
         </q-item-label>
+
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
@@ -47,9 +46,10 @@
 </template>
 
 <script>
+import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 
-const linksData = [
+const linksList = [
   {
     title: 'Docs',
     caption: 'quasar.dev',
@@ -92,16 +92,25 @@ const linksData = [
     icon: 'favorite',
     link: 'https://awesome.quasar.dev'
   }
-];
+]
 
-export default {
+export default defineComponent({
   name: 'MainLayout',
-  components: { EssentialLink },
-  data () {
+
+  components: {
+    EssentialLink
+  },
+
+  setup () {
+    const leftDrawerOpen = ref(false)
+
     return {
-      leftDrawerOpen: false,
-      essentialLinks: linksData
+      essentialLinks: linksList,
+      leftDrawerOpen,
+      toggleLeftDrawer () {
+        leftDrawerOpen.value = !leftDrawerOpen.value
+      }
     }
   }
-}
+})
 </script>

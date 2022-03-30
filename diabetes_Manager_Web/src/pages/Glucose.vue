@@ -30,7 +30,7 @@ import axios from 'axios';
 
 
 export default {
-  name: 'Glucose',
+  name: 'GlucosePage',
   components: {},
   data: function () {
     return {
