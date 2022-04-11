@@ -18,9 +18,9 @@ public abstract class BaseEntity {
 	@Column(name="LAST_UPDATE_DATE")
 	private LocalDateTime lastUpdateDate;
 	
-	@Column(name="USER")
+	@Column(name="USER_ID")
 	@NotBlank
-	private String user;
+	private String userId;
 	
 	
 	//GETTERS AND SETTERS
@@ -40,12 +40,12 @@ public abstract class BaseEntity {
 		this.lastUpdateDate = lastUpdateDate;
 	}
 
-	public String getUser() {
-		return user;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 	//HASHCODE AND EQUALS
