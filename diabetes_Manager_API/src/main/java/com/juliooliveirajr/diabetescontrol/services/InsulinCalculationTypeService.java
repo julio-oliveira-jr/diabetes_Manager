@@ -16,33 +16,33 @@ public class InsulinCalculationTypeService {
 	private IInsulinCalculationTypeRepository repositorio;
 	
 	//CRUD
-	public InsulinCalculationType save(InsulinCalculationType tipoCalculoInsulina) {
-		if(tipoCalculoInsulina.getRegisterDate() == null) {
-			tipoCalculoInsulina.setRegisterDate(LocalDateTime.now());
+	public InsulinCalculationType save(InsulinCalculationType entity) {
+		if(entity.getRegisterDate() == null) {
+			entity.setRegisterDate(LocalDateTime.now());
 		}
-		return repositorio.save(tipoCalculoInsulina);
+		return repositorio.save(entity);
 	}
 	
-	public InsulinCalculationType update(InsulinCalculationType tipoCalculoInsulina) {
-		if(has(tipoCalculoInsulina.getInsulinCalculationTypeId())) {
-			tipoCalculoInsulina.setLastUpdateDate(LocalDateTime.now());
-			return repositorio.save(tipoCalculoInsulina);
+	public InsulinCalculationType update(InsulinCalculationType entity) {
+		if(has(entity.getInsulinCalculationTypeId())) {
+			entity.setLastUpdateDate(LocalDateTime.now());
+			return repositorio.save(entity);
 		}
 		
 		return null;
 	}
 	
-	public InsulinCalculationType search(Integer codTipoCalculoInsulina) {
-		return has(codTipoCalculoInsulina) ? null : repositorio.findById(codTipoCalculoInsulina).get();
+	public InsulinCalculationType search(Integer id) {
+		return has(id) ? null : repositorio.findById(id).get();
 	}
 	
-	public void delete(Integer codTipoCalculoInsulina) {
-		if(has(codTipoCalculoInsulina)) {
-			repositorio.deleteById(codTipoCalculoInsulina);
+	public void delete(Integer id) {
+		if(has(id)) {
+			repositorio.deleteById(id);
 		}
 	}
 	
-	public boolean has(Integer codTipoCalculoInsulina) {
-		return codTipoCalculoInsulina != null && !repositorio.findById(codTipoCalculoInsulina).isEmpty();
+	public boolean has(Integer id) {
+		return id != null && !repositorio.findById(id).isEmpty();
 	}
 }

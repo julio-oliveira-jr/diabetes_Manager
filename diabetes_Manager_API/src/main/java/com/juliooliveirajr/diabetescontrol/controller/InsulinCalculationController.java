@@ -21,22 +21,22 @@ public class InsulinCalculationController {
 	private IsulinCalculationService service;
 	
 	@PostMapping()
-	public InsulinCalculation save(@RequestBody InsulinCalculation insulinCalculation) {
-		return service.save(insulinCalculation);
+	public InsulinCalculation save(@RequestBody InsulinCalculation entity) {
+		return service.save(entity);
 	}
 	
 	@PutMapping()
-	public InsulinCalculation update(@RequestBody  InsulinCalculation insulinCalculation){
-		return service.update(insulinCalculation);
+	public InsulinCalculation update(@RequestBody  InsulinCalculation entity){
+		return service.update(entity);
 	}
 	
 	@GetMapping("/search/{id}")
-	public InsulinCalculation buscarCalculoInsulina(@PathVariable Integer id) {
-		return service.buscarCalculoInsulina(id);
+	public InsulinCalculation search(@PathVariable Integer id) {
+		return service.search(id);
 	}
 	
 	@DeleteMapping("/{id}")
-	public void excluirCalculoInsulina(@PathVariable Integer id) {
-		service.excluir(id);
+	public void delete(@PathVariable Integer id) {
+		service.delete(id);
 	}
 }

@@ -26,13 +26,13 @@ public class BloodGlucoseController {
 	private BloodGlucoseService service;
 	
 	@PostMapping()
-	public BloodGlucose save(@RequestBody BloodGlucose glucose) throws Exception {
-		return service.save(glucose);
+	public BloodGlucose save(@RequestBody BloodGlucose entity) throws Exception {
+		return service.save(entity);
 	}
 	
 	@PutMapping()
-	public BloodGlucose update(@RequestBody  BloodGlucose glucose){
-		return service.update(glucose);
+	public BloodGlucose update(@RequestBody  BloodGlucose entity){
+		return service.update(entity);
 	}
 	
 	@GetMapping("/search/{id}")

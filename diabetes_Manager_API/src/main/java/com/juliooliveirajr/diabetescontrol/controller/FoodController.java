@@ -21,13 +21,13 @@ public class FoodController {
 	private FoodService service;
 	
 	@PostMapping()
-	public Food save(@RequestBody Food food) {
-		return service.save(food);
+	public Food save(@RequestBody Food entity) {
+		return service.save(entity);
 	}
 	
 	@PutMapping()
-	public Food update(@RequestBody  Food food){
-		return service.update(food);
+	public Food update(@RequestBody  Food entity){
+		return service.update(entity);
 	}
 	
 	@GetMapping("/search/{id}")

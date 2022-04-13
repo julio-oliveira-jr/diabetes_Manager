@@ -17,54 +17,54 @@ public class BloodGlucoseService {
 	private IBloodGlucoseRepository repository;
 	
 	//CRUD
-	public BloodGlucose save(BloodGlucose glucose) throws Exception{
-		if(glucose.getRegisterDate() == null) {
-			glucose.setRegisterDate(LocalDateTime.now());
+	public BloodGlucose save(BloodGlucose entity) throws Exception{
+		if(entity.getRegisterDate() == null) {
+			entity.setRegisterDate(LocalDateTime.now());
 		}
 		
-		this.validate(glucose);
+		this.validate(entity);
 		
-		return repository.save(glucose);
+		return repository.save(entity);
 	}
 	
-	public BloodGlucose update(BloodGlucose glucose) {
-		if(has(glucose.getGlucoseValue())) {
-			glucose.setLastUpdateDate(LocalDateTime.now());
-			return repository.save(glucose);
+	public BloodGlucose update(BloodGlucose entity) {
+		if(has(entity.getGlucoseValue())) {
+			entity.setLastUpdateDate(LocalDateTime.now());
+			return repository.save(entity);
 		}
 		
 		return null;
 	}
 	
-	public BloodGlucose search(Integer glucoseId) {
-		return has(glucoseId) ? null : repository.findById(glucoseId).get();
+	public BloodGlucose search(Integer id) {
+		return has(id) ? null : repository.findById(id).get();
 	}
 	
-	public List<BloodGlucose> searchForPeriod(LocalDateTime inferiorLimitDate, LocalDateTime superiorLimitDate) {
-		return (inferiorLimitDate == null && superiorLimitDate == null) ? this.searchForWeek() : repository.searchForPeriod(inferiorLimitDate, superiorLimitDate);
+	public List<BloodGlucose> searchForPeriod(LocalDateTime from, LocalDateTime to) {
+		return (from == null && to == null) ? this.searchForWeek() : repository.searchForPeriod(from, to);
 	}
 	
 	public List<BloodGlucose> searchForWeek(){
 		return repository.searchForWeek(LocalDateTime.now().plusDays(1), LocalDateTime.now().minusDays(7));
 	}
 	
-	public void delete(Integer glucoseId) {
-		if(has(glucoseId)) {
-			repository.deleteById(glucoseId);
+	public void delete(Integer id) {
+		if(has(id)) {
+			repository.deleteById(id);
 		}
 	}
 	
-	public boolean has(Integer glucoseId) {
-		return glucoseId != null && !repository.findById(glucoseId).isEmpty();
+	public boolean has(Integer id) {
+		return id != null && !repository.findById(id).isEmpty();
 	}
 	
-	public void validate(BloodGlucose glucose) throws Exception{
-		if(this.exists(glucose)) {
+	public void validate(BloodGlucose entity) throws Exception{
+		if(this.exists(entity)) {
 			throw new Exception("Já existe uma glucose cadastrada com o horário e data informados!");
 		}
 	}
 	
-	public boolean exists(BloodGlucose glucose) {
-		return !repository.searchForDateHour(glucose.getGlucoseDate(), glucose.getGlucoseHour()).isEmpty();
+	public boolean exists(BloodGlucose entity) {
+		return !repository.searchForDateHour(entity.getGlucoseDate(), entity.getGlucoseHour()).isEmpty();
 	}
 }
