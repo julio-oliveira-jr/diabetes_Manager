@@ -14,37 +14,37 @@ public class FoodService {
 	
 	//REPOSITORIES
 	@Autowired
-	private IFoodRepository repositorio;
+	private IFoodRepository repository;
 	
 	//CRUD
-	public Food save(Food food) {
-		if(food.getRegisterDate() == null) {
-			food.setRegisterDate(LocalDateTime.now());
+	public Food save(Food entity) {
+		if(entity.getRegisterDate() == null) {
+			entity.setRegisterDate(LocalDateTime.now());
 		}
-		food.setCarbohydrateGramQty(food.getCarbohydrateQty().divide(food.getFoodQty(), RoundingMode.HALF_EVEN));
-		return repositorio.save(food);
+		entity.setCarbohydrateGramQty(entity.getCarbohydrateQty().divide(entity.getFoodQty(), RoundingMode.HALF_EVEN));
+		return repository.save(entity);
 	}
 	
-	public Food update(Food food) {
-		if(has(food.getFoodId())) {
-			food.setLastUpdateDate(LocalDateTime.now());
-			return repositorio.save(food);
+	public Food update(Food entity) {
+		if(has(entity.getFoodId())) {
+			entity.setLastUpdateDate(LocalDateTime.now());
+			return repository.save(entity);
 		}
 		
 		return null;
 	}
 	
-	public Food search(Integer codAlimento) {
-		return has(codAlimento) ? null : repositorio.findById(codAlimento).get();
+	public Food search(Integer id) {
+		return has(id) ? null : repository.findById(id).get();
 	}
 	
-	public void delete(Integer codAlimento) {
-		if(has(codAlimento)) {
-			repositorio.deleteById(codAlimento);
+	public void delete(Integer id) {
+		if(has(id)) {
+			repository.deleteById(id);
 		}
 	}
 	
-	public boolean has(Integer codAlimento) {
-		return codAlimento != null && !repositorio.findById(codAlimento).isEmpty();
+	public boolean has(Integer id) {
+		return id != null && !repository.findById(id).isEmpty();
 	}
 }

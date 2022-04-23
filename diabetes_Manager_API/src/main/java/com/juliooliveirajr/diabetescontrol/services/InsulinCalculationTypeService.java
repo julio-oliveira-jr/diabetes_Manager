@@ -13,36 +13,36 @@ public class InsulinCalculationTypeService {
 	
 	//REPOSITORIES
 	@Autowired
-	private IInsulinCalculationTypeRepository repositorio;
+	private IInsulinCalculationTypeRepository repository;
 	
 	//CRUD
 	public InsulinCalculationType save(InsulinCalculationType entity) {
 		if(entity.getRegisterDate() == null) {
 			entity.setRegisterDate(LocalDateTime.now());
 		}
-		return repositorio.save(entity);
+		return repository.save(entity);
 	}
 	
 	public InsulinCalculationType update(InsulinCalculationType entity) {
 		if(has(entity.getInsulinCalculationTypeId())) {
 			entity.setLastUpdateDate(LocalDateTime.now());
-			return repositorio.save(entity);
+			return repository.save(entity);
 		}
 		
 		return null;
 	}
 	
 	public InsulinCalculationType search(Integer id) {
-		return has(id) ? null : repositorio.findById(id).get();
+		return has(id) ? null : repository.findById(id).get();
 	}
 	
 	public void delete(Integer id) {
 		if(has(id)) {
-			repositorio.deleteById(id);
+			repository.deleteById(id);
 		}
 	}
 	
 	public boolean has(Integer id) {
-		return id != null && !repositorio.findById(id).isEmpty();
+		return id != null && !repository.findById(id).isEmpty();
 	}
 }
