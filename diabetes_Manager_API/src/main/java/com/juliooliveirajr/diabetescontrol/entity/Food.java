@@ -8,14 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.juliooliveirajr.diabetescontrol.utils.StringUtils;
 
-@Entity
-@Inheritance
+@Entity(name = "Food")
+@Table(name = "FOOD")
 public class Food extends BaseEntity {
 	//MAPPING
 	@Id
@@ -98,7 +98,7 @@ public class Food extends BaseEntity {
 	public void setSummaryDescription(String summaryDescription) {
 		this.summaryDescription = StringUtils.isEmptyOrNull(summaryDescription) ? this.description.substring(0, 24) : summaryDescription;
 	}
-
+	
 	//HASHCODE E EQUALS
 	@Override
 	public int hashCode() {
@@ -110,13 +110,16 @@ public class Food extends BaseEntity {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (!super.equals(obj))
+		}
+		if (!super.equals(obj)) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (!(obj instanceof Food)) {
 			return false;
+		}
 		Food other = (Food) obj;
 		return Objects.equals(description, other.description);
-	}	
+	}
 }

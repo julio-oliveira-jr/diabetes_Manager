@@ -1,6 +1,6 @@
 package com.juliooliveirajr.diabetescontrol.enums;
 
-public enum TimeTypeEnum {
+public enum MealTypeEnum {
 	//DECLARATIONS
 	BREAKFAST("Café da manhã", "B"),
 	LUNCH ("Almoço", "L"),
@@ -8,7 +8,7 @@ public enum TimeTypeEnum {
 	SNACK("Lanche", "S");
 	
 	//CONSTRUCTOR
-	TimeTypeEnum(String description, String value) {
+	MealTypeEnum(String description, String value) {
 		this.description = description;
 		this.value = value;
 	}
@@ -18,12 +18,12 @@ public enum TimeTypeEnum {
 	private String value;
 	
 	//GETTERS AND SETTERS
-	public String getDescricao(String value) {
-		return TimeTypeEnum.valueOf(TimeTypeEnum.class, value).description;
+	public String getDescription(String value) {
+		return MealTypeEnum.valueOf(MealTypeEnum.class, value).description;
 	}
 	
-	public String getValor(String description) {
-		return TimeTypeEnum.valueOf(TimeTypeEnum.class, description).value;
+	public String getValue(String description) {
+		return MealTypeEnum.valueOf(MealTypeEnum.class, description).value;
 	}
 	
 }

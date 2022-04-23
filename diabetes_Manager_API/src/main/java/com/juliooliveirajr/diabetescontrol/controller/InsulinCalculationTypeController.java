@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.juliooliveirajr.diabetescontrol.entity.InsulinCalculationType;
-import com.juliooliveirajr.diabetescontrol.enums.CalculationTypeEnum;
-import com.juliooliveirajr.diabetescontrol.enums.TimeTypeEnum;
+import com.juliooliveirajr.diabetescontrol.enums.MealTypeEnum;
 import com.juliooliveirajr.diabetescontrol.services.InsulinCalculationTypeService;
 
 @RestController
@@ -42,14 +41,9 @@ public class InsulinCalculationTypeController {
 		service.delete(id);
 	}
 	
-	@GetMapping("/searchCalculationType")
-	public CalculationTypeEnum[] searchCalculationType() {
-		return CalculationTypeEnum.values();
-	}
-	
-	@GetMapping("/searchTimeType")
-	public TimeTypeEnum[] TimeTypeEnum() {
-		return TimeTypeEnum.values();
+	@GetMapping("/searchMealType")
+	public MealTypeEnum[] MealTypeEnum() {
+		return MealTypeEnum.values();
 	}
 	
 	

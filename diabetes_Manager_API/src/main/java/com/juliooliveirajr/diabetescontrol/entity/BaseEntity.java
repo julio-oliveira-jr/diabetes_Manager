@@ -20,7 +20,7 @@ public abstract class BaseEntity {
 	
 	@Column(name="USER_ID")
 	@NotBlank
-	private String userId;
+	private Integer userId;
 	
 	
 	//GETTERS AND SETTERS
@@ -40,14 +40,14 @@ public abstract class BaseEntity {
 		this.lastUpdateDate = lastUpdateDate;
 	}
 
-	public String getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-	
+
 	//HASHCODE AND EQUALS
 	@Override
 	public int hashCode() {
@@ -56,13 +56,13 @@ public abstract class BaseEntity {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (!(obj instanceof BaseEntity)) {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		}
 		BaseEntity other = (BaseEntity) obj;
 		return Objects.equals(registerDate, other.registerDate);
-	}
+	}	
 }

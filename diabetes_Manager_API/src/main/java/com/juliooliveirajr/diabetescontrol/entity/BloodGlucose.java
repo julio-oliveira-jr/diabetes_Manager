@@ -1,7 +1,6 @@
 package com.juliooliveirajr.diabetescontrol.entity;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@Entity(name = "BloogGlucose")
+@Entity(name = "BloodGlucose")
 @Table(name = "BLOOD_GLUCOSE")
 public class BloodGlucose extends BaseEntity {
 	//MAPPING
@@ -79,7 +78,8 @@ public class BloodGlucose extends BaseEntity {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(glucoseDate, glucoseHour);
+		result = prime * result + ((glucoseDate == null) ? 0 : glucoseDate.hashCode());
+		result = prime * result + ((glucoseHour == null) ? 0 : glucoseHour.hashCode());
 		return result;
 	}
 
@@ -92,6 +92,16 @@ public class BloodGlucose extends BaseEntity {
 		if (getClass() != obj.getClass())
 			return false;
 		BloodGlucose other = (BloodGlucose) obj;
-		return Objects.equals(glucoseDate, other.glucoseDate) && Objects.equals(glucoseHour, other.glucoseHour);
+		if (glucoseDate == null) {
+			if (other.glucoseDate != null)
+				return false;
+		} else if (!glucoseDate.equals(other.glucoseDate))
+			return false;
+		if (glucoseHour == null) {
+			if (other.glucoseHour != null)
+				return false;
+		} else if (!glucoseHour.equals(other.glucoseHour))
+			return false;
+		return true;
 	}
 }

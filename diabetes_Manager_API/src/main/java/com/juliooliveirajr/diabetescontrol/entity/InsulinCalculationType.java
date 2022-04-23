@@ -7,12 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Inheritance
+@Entity(name = "InsulinCalculationType")
+@Table(name = "INSULIN_CALCULATION_TYPE")
 public class InsulinCalculationType extends BaseEntity {
 	//MAPPING
 	@Id
@@ -20,13 +20,9 @@ public class InsulinCalculationType extends BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Integer insulinCalculationTypeId;
 	
-	@Column(name="CALCULATION_TYPE_IND")
+	@Column(name="MEAL_TYPE_IND")
 	@NotBlank
-	private String calculationTypeInd;
-	
-	@Column(name="TIME_TYPE_IND")
-	@NotBlank
-	private String timeTypeInd;
+	private String mealTypeInd;
 	
 	@Column(name="OPTIMAL_GLUCOSE_VALUE")
 	@NotNull
@@ -35,6 +31,10 @@ public class InsulinCalculationType extends BaseEntity {
 	@Column(name="VARIATION_SENSOR_VALUE")
 	@NotNull
 	private Integer variationSensorValue;
+	
+	@Column(name="QTY_ CARB_CONS _UNIT_ INSULIN")
+	@NotNull
+	private Integer qtyCarbConsUnitInsulin;
 	
 	//CONSTRUCTORS
 	public InsulinCalculationType() {
@@ -53,20 +53,12 @@ public class InsulinCalculationType extends BaseEntity {
 		this.insulinCalculationTypeId = insulinCalculationTypeId;
 	}
 
-	public String getCalculationTypeInd() {
-		return calculationTypeInd;
+	public String getMealTypeInd() {
+		return mealTypeInd;
 	}
 
-	public void setCalculationTypeInd(String calculationTypeInd) {
-		this.calculationTypeInd = calculationTypeInd;
-	}
-
-	public String getTimeTypeInd() {
-		return timeTypeInd;
-	}
-
-	public void setTimeTypeInd(String timeTypeInd) {
-		this.timeTypeInd = timeTypeInd;
+	public void setMealTypeInd(String mealTypeInd) {
+		this.mealTypeInd = mealTypeInd;
 	}
 
 	public Integer getOptimalGlucoseValue() {
@@ -85,28 +77,35 @@ public class InsulinCalculationType extends BaseEntity {
 		this.variationSensorValue = variationSensorValue;
 	}
 	
+	public Integer getQtyCarbConsUnitInsulin() {
+		return qtyCarbConsUnitInsulin;
+	}
+
+	public void setQtyCarbConsUnitInsulin(Integer qtyCarbConsUnitInsulin) {
+		this.qtyCarbConsUnitInsulin = qtyCarbConsUnitInsulin;
+	}
+	
 	//HASHCODE AND EQUALS
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result
-				+ Objects.hash(calculationTypeInd, optimalGlucoseValue, timeTypeInd, variationSensorValue);
+		result = prime * result + Objects.hash(mealTypeInd);
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (!super.equals(obj))
+		}
+		if (!super.equals(obj)) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (!(obj instanceof InsulinCalculationType)) {
 			return false;
+		}
 		InsulinCalculationType other = (InsulinCalculationType) obj;
-		return Objects.equals(calculationTypeInd, other.calculationTypeInd)
-				&& Objects.equals(optimalGlucoseValue, other.optimalGlucoseValue)
-				&& Objects.equals(timeTypeInd, other.timeTypeInd)
-				&& Objects.equals(variationSensorValue, other.variationSensorValue);
+		return Objects.equals(mealTypeInd, other.mealTypeInd);
 	}
 }

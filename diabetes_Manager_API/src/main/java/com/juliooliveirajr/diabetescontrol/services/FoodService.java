@@ -1,5 +1,6 @@
 package com.juliooliveirajr.diabetescontrol.services;
 
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ public class FoodService {
 		if(food.getRegisterDate() == null) {
 			food.setRegisterDate(LocalDateTime.now());
 		}
+		food.setCarbohydrateGramQty(food.getCarbohydrateQty().divide(food.getFoodQty(), RoundingMode.HALF_EVEN));
 		return repositorio.save(food);
 	}
 	

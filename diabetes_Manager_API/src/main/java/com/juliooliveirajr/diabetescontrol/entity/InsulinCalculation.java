@@ -7,13 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Inheritance
+@Entity(name = "InsulinCalculation")
+@Table(name = "INSULIN_CALCULATION")
 public class InsulinCalculation extends BaseEntity {
 	//MAPPING
 	@Id
@@ -21,34 +21,28 @@ public class InsulinCalculation extends BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Integer insulinCalculationId;
 	
-	@ManyToOne()
-	@JoinColumn(name="INSULIN_CALCULATION_TYPE")
-	@NotNull
-	private InsulinCalculationType insulinCalculationType;
-	
-	@ManyToOne()
-	@JoinColumn(name="GLUCOSE_ID")
-	@NotNull
-	private BloodGlucose glucose;
-	
-	@ManyToOne()
-	@JoinColumn(name="foodId")
-	@NotNull
-	private Food food;
-	
 	@Column(name="RESULT_VALUE")
 	@NotNull
 	private BigDecimal resultValue;
 	
+	@ManyToOne()
+	@JoinColumn(name="ALIMENTARY_BOLUS_ID")
+	@NotNull
+	private AlimentaryBolus alimentaryBolus;
+	
+	@ManyToOne()
+	@JoinColumn(name="CORRECTION_BOLUS_ID")
+	@NotNull
+	private CorrectionBolus correctionBolus;
+	
 	//CONSTRUCTORS
 	public InsulinCalculation() {
 	}
-
+	
 	public InsulinCalculation(Integer insulinCalculationId) {
 		this.insulinCalculationId = insulinCalculationId;
 	}
-	
-	//GETTERS AND SETTERS
+
 	public Integer getInsulinCalculationId() {
 		return insulinCalculationId;
 	}
@@ -57,35 +51,27 @@ public class InsulinCalculation extends BaseEntity {
 		this.insulinCalculationId = insulinCalculationId;
 	}
 
-	public InsulinCalculationType getInsulinCalculationType() {
-		return insulinCalculationType;
-	}
-
-	public void setInsulinCalculationType(InsulinCalculationType insulinCalculationType) {
-		this.insulinCalculationType = insulinCalculationType;
-	}
-
-	public BloodGlucose getGlucose() {
-		return glucose;
-	}
-
-	public void setGlucose(BloodGlucose glucose) {
-		this.glucose = glucose;
-	}
-
-	public Food getFood() {
-		return food;
-	}
-
-	public void setFood(Food food) {
-		this.food = food;
-	}
-
 	public BigDecimal getResultValue() {
 		return resultValue;
 	}
 
 	public void setResultValue(BigDecimal resultValue) {
 		this.resultValue = resultValue;
+	}
+
+	public AlimentaryBolus getAlimentaryBolus() {
+		return alimentaryBolus;
+	}
+
+	public void setAlimentaryBolus(AlimentaryBolus alimentaryBolus) {
+		this.alimentaryBolus = alimentaryBolus;
+	}
+
+	public CorrectionBolus getCorrectionBolus() {
+		return correctionBolus;
+	}
+
+	public void setCorrectionBolus(CorrectionBolus correctionBolus) {
+		this.correctionBolus = correctionBolus;
 	}
 }
