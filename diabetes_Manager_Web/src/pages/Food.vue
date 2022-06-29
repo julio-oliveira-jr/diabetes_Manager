@@ -2,7 +2,7 @@
   <q-page>
     <q-card>
       <div class="row">
-      <div class="col-sm-12 col-md-12 q-pa-sm">
+        <div class="col-sm-12 col-md-12 q-pa-sm">
           <q-input outlined v-model="food.description" type="text" label="Descrição completa" :error="!descriptionValidation" error-message="Descrição completa é obrigatória!" maxlength="50" autogrow="true"/>
         </div>
         <div class="col-sm-12 col-md-6 q-pa-sm">

@@ -18,13 +18,12 @@ public enum MealTypeEnum {
 	private String value;
 	
 	//GETTERS AND SETTERS
-	public String getDescription(String value) {
-		return MealTypeEnum.valueOf(MealTypeEnum.class, value).description;
+	public String getDescription() {
+		return this.description;
 	}
 	
-	public String getValue(String description) {
-		return MealTypeEnum.valueOf(MealTypeEnum.class, description).value;
+	public String getValue() {
+		return this.value;
 	}
-	
 }
 

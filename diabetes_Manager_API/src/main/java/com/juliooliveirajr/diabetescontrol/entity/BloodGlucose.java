@@ -16,61 +16,61 @@ import javax.validation.constraints.NotNull;
 public class BloodGlucose extends BaseEntity {
 	//MAPPING
 	@Id
-	@Column(name="GLUCOSE_ID")
+	@Column(name="BLOOD_GLUCOSE_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
-	private Integer glucoseId;
+	private Integer bloodGlucoseId;
 	
-	@Column(name="GLUCOSE_VALUE")
+	@Column(name="VALUE")
 	@NotNull
-	private Integer glucoseValue;
+	private Integer value;
 	
-	@Column(name="GLUCOSE_DATE")
+	@Column(name="DATE")
 	@NotNull
-	private LocalDateTime glucoseDate;
+	private LocalDateTime date;
 	
-	@Column(name="GLUCOSE_HOUR")
+	@Column(name="HOUR")
 	@NotBlank
-	private String glucoseHour;
+	private String hour;
 	
 	//CONSTRUCTORS
 	public BloodGlucose() {
 	}
 
-	public BloodGlucose(Integer glucoseId) {
-		this.glucoseId = glucoseId;
+	public Integer getBloodGlucoseId() {
+		return bloodGlucoseId;
 	}
-	
+
 	//GETTERS AND SETTERS
-	public Integer getGlucoseId() {
-		return glucoseId;
+	public void setBloodGlucoseId(Integer bloodGlucoseId) {
+		this.bloodGlucoseId = bloodGlucoseId;
 	}
 
-	public void setGlucoseId(Integer glucoseId) {
-		this.glucoseId = glucoseId;
+	public void setValue(Integer value) {
+		this.value = value;
 	}
 
-	public Integer getGlucoseValue() {
-		return glucoseValue;
+	public Integer getValue() {
+		return value;
 	}
 
-	public void setGlucoseValue(Integer glucoseValue) {
-		this.glucoseValue = glucoseValue;
+	public void setvalue(Integer value) {
+		this.value = value;
 	}
 
-	public LocalDateTime getGlucoseDate() {
-		return glucoseDate;
+	public LocalDateTime getDate() {
+		return date;
 	}
 
-	public void setGlucoseDate(LocalDateTime glucoseDate) {
-		this.glucoseDate = glucoseDate;
+	public void setDate(LocalDateTime date) {
+		this.date = date;
 	}
 
-	public String getGlucoseHour() {
-		return glucoseHour;
+	public String getHour() {
+		return hour;
 	}
 
-	public void setGlucoseHour(String glucoseHour) {
-		this.glucoseHour = glucoseHour;
+	public void setHour(String hour) {
+		this.hour = hour;
 	}
 	
 	//HASHCODE AND EQUALS
@@ -78,8 +78,8 @@ public class BloodGlucose extends BaseEntity {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((glucoseDate == null) ? 0 : glucoseDate.hashCode());
-		result = prime * result + ((glucoseHour == null) ? 0 : glucoseHour.hashCode());
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((hour == null) ? 0 : hour.hashCode());
 		return result;
 	}
 
@@ -92,15 +92,15 @@ public class BloodGlucose extends BaseEntity {
 		if (getClass() != obj.getClass())
 			return false;
 		BloodGlucose other = (BloodGlucose) obj;
-		if (glucoseDate == null) {
-			if (other.glucoseDate != null)
+		if (date == null) {
+			if (other.date != null)
 				return false;
-		} else if (!glucoseDate.equals(other.glucoseDate))
+		} else if (!date.equals(other.date))
 			return false;
-		if (glucoseHour == null) {
-			if (other.glucoseHour != null)
+		if (hour == null) {
+			if (other.hour != null)
 				return false;
-		} else if (!glucoseHour.equals(other.glucoseHour))
+		} else if (!hour.equals(other.hour))
 			return false;
 		return true;
 	}

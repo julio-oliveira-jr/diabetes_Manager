@@ -28,8 +28,8 @@ public class BloodGlucoseService {
 	}
 	
 	public BloodGlucose update(BloodGlucose entity) {
-		if(has(entity.getGlucoseValue())) {
-			entity.setLastUpdateDate(LocalDateTime.now());
+		if(has(entity.getValue())) {
+			entity.setModifiedDate(LocalDateTime.now());
 			return repository.save(entity);
 		}
 		
@@ -37,7 +37,7 @@ public class BloodGlucoseService {
 	}
 	
 	public BloodGlucose search(Integer id) {
-		return has(id) ? null : repository.findById(id).get();
+		return has(id) ? repository.findById(id).get() : null;
 	}
 	
 	public List<BloodGlucose> searchForPeriod(LocalDateTime from, LocalDateTime to) {
@@ -65,6 +65,6 @@ public class BloodGlucoseService {
 	}
 	
 	public boolean exists(BloodGlucose entity) {
-		return !repository.searchForDateHour(entity.getGlucoseDate(), entity.getGlucoseHour()).isEmpty();
+		return !repository.searchForDateHour(entity.getDate(), entity.getHour()).isEmpty();
 	}
 }

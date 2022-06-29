@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog  
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"  
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+                      
+    <changeSet  id="1"  author="julio.oliveira"> 
+    	<sql> 
+   		   		CREATE TABLE MEASURE_UNITY (
+				MEASURE_UNITY_ID INT IDENTITY (1,1) NOT NULL,
+				CONSTRAINT PK_MEASURE_UNITY_ PRIMARY KEY CLUSTERED (MEASURE_UNITY_ID),
+				DESCRIPTION VARCHAR(50) NOT NULL,
+				SYMBOL VARCHAR(10) NOT NULL,
+				REGISTER_DATE DATETIME NOT NULL,
+				MODIFIED_DATE DATETIME,
+				USER_ID INT NOT NULL
+			); 
+			
+			ALTER TABLE FOOD ADD MEASURE_UNITY_ID INT NOT NULL;
+			
+			ALTER TABLE FOOD ADD CONSTRAINT FK_FOOD_MEASURE_UNITY FOREIGN KEY (MEASURE_UNITY_ID) REFERENCES MEASURE_UNITY (MEASURE_UNITY_ID);
+			
+			EXEC sp_rename 'FOOD.LAST_UPDATE_DATE', 'MODIFIED_DATE', 'COLUMN';
+			EXEC sp_rename 'BLOOD_GLUCOSE.LAST_UPDATE_DATE', 'MODIFIED_DATE', 'COLUMN';
+			EXEC sp_rename 'ALIMENTARY_BOLUS.LAST_UPDATE_DATE', 'MODIFIED_DATE', 'COLUMN';
+			EXEC sp_rename 'CORRECTION_BOLUS.LAST_UPDATE_DATE', 'MODIFIED_DATE', 'COLUMN';
+			EXEC sp_rename 'INSULIN_CALCULATION.LAST_UPDATE_DATE', 'MODIFIED_DATE', 'COLUMN';
+			EXEC sp_rename 'INSULIN_CALCULATION_TYPE.LAST_UPDATE_DATE', 'MODIFIED_DATE', 'COLUMN';
+			
+			EXEC sp_rename 'BLOOD_GLUCOSE.GLUCOSE_VALUE', 'VALUE', 'COLUMN';
+			EXEC sp_rename 'BLOOD_GLUCOSE.GLUCOSE_DATE', 'DATE', 'COLUMN';
+			EXEC sp_rename 'BLOOD_GLUCOSE.GLUCOSE_HOUR', 'HOUR', 'COLUMN';
+			
+			EXEC sp_rename 'FOOD.CARBOHYDRATE_QTY', 'CARBOHYDRATE_QTY_PORTION', 'COLUMN';
+			EXEC sp_rename 'FOOD.CARBOHYDRATE_GRAM_QTY', 'CARBOHYDRATE_QTY_UNITY', 'COLUMN';
+			EXEC sp_rename 'FOOD.FOOD_QTY', 'UNITY_QTY', 'COLUMN';
+		</sql>	
+	</changeSet>
+</databaseChangeLog>
+
+

@@ -1,6 +1,10 @@
 package com.juliooliveirajr.diabetescontrol.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,18 +26,23 @@ public class InsulinCalculationTypeController {
 	private InsulinCalculationTypeService service;
 	
 	@PostMapping()
-	public InsulinCalculationType save(@RequestBody InsulinCalculationType entity) {
-		return service.save(entity);
+	public ResponseEntity<InsulinCalculationType> save(@RequestBody InsulinCalculationType entity) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(entity));
 	}
 	
 	@PutMapping()
-	public InsulinCalculationType update(@RequestBody  InsulinCalculationType entity){
-		return service.update(entity);
+	public ResponseEntity<InsulinCalculationType> update(@RequestBody  InsulinCalculationType entity){
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.update(entity));
 	}
 	
 	@GetMapping("/search/{id}")
-	public InsulinCalculationType search(@PathVariable Integer id) {
-		return service.search(id);
+	public ResponseEntity<InsulinCalculationType> search(@PathVariable Integer id) {
+		return ResponseEntity.ok(service.search(id));
+	}
+	
+	@GetMapping("/search/{filter}")
+	public  ResponseEntity<List<InsulinCalculationType>> searchByFilter(@PathVariable String filter) {
+		return ResponseEntity.ok(service.searchByFilter(filter));
 	}
 	
 	@DeleteMapping("/{id}")
@@ -45,6 +54,4 @@ public class InsulinCalculationTypeController {
 	public MealTypeEnum[] MealTypeEnum() {
 		return MealTypeEnum.values();
 	}
-	
-	
 }

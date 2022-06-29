@@ -32,7 +32,7 @@ public class InsulinCalculationType extends BaseEntity {
 	@NotNull
 	private Integer variationSensorValue;
 	
-	@Column(name="QTY_ CARB_CONS _UNIT_ INSULIN")
+	@Column(name="QTY_ CARB_CONS_UNIT_INSULIN")
 	@NotNull
 	private Integer qtyCarbConsUnitInsulin;
 	

@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.juliooliveirajr.diabetescontrol.entity.InsulinCalculation;
-import com.juliooliveirajr.diabetescontrol.services.IsulinCalculationService;
+import com.juliooliveirajr.diabetescontrol.services.InsulinCalculationService;
 
 @RestController
 @RequestMapping("/insulinCalculation")
 public class InsulinCalculationController {
 	//SERVICOS
 	@Autowired
-	private IsulinCalculationService service;
+	private InsulinCalculationService service;
 	
 	@PostMapping()
 	public InsulinCalculation save(@RequestBody InsulinCalculation entity) {

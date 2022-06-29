@@ -5,7 +5,6 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
@@ -15,13 +14,12 @@ public abstract class BaseEntity {
 	@NotNull
 	private LocalDateTime registerDate;
 	
-	@Column(name="LAST_UPDATE_DATE")
-	private LocalDateTime lastUpdateDate;
+	@Column(name="MODIFIED_DATE")
+	private LocalDateTime modifiedDate;
 	
 	@Column(name="USER_ID")
-	@NotBlank
+	@NotNull
 	private Integer userId;
-	
 	
 	//GETTERS AND SETTERS
 	public LocalDateTime getRegisterDate() {
@@ -32,12 +30,12 @@ public abstract class BaseEntity {
 		this.registerDate = registerDate;
 	}
 
-	public LocalDateTime getLastUpdateDate() {
-		return lastUpdateDate;
+	public LocalDateTime getModifiedDate() {
+		return modifiedDate;
 	}
 
-	public void setLastUpdateDate(LocalDateTime lastUpdateDate) {
-		this.lastUpdateDate = lastUpdateDate;
+	public void setModifiedDate(LocalDateTime modifiedDate) {
+		this.modifiedDate = modifiedDate;
 	}
 
 	public Integer getUserId() {

@@ -1,5 +1,6 @@
 package com.juliooliveirajr.diabetescontrol.services;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class CorrectionBolusService {
 	
 	public CorrectionBolus update(CorrectionBolus entity) {
 		if(has(entity.getCorretionBolusId())) {
-			entity.setLastUpdateDate(LocalDateTime.now());
+			entity.setModifiedDate(LocalDateTime.now());
 			return repository.save(entity);
 		}
 		
@@ -44,5 +45,11 @@ public class CorrectionBolusService {
 	
 	public boolean has(Integer id) {
 		return id != null && !repository.findById(id).isEmpty();
+	}
+	
+	public CorrectionBolus calculate(CorrectionBolus correctionBolus) {	
+		correctionBolus.setResultValue(BigDecimal.valueOf((correctionBolus.getGlucose().getValue() - correctionBolus.getInsulinCalculationType().getOptimalGlucoseValue()) / correctionBolus.getInsulinCalculationType().getVariationSensorValue()));
+		
+		return correctionBolus;
 	}
 }

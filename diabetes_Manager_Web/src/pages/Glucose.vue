@@ -2,7 +2,7 @@
   <q-page>
     <q-card>
       <div class="row">
-      <div class="col-sm-12 col-md-3 q-pa-sm">
+        <div class="col-sm-12 col-md-3 q-pa-sm">
           <q-input outlined v-model="glucose.glucoseDate" type="date" hint="Data" :error="!dataValidation" error-message="Data é obrigatória!"/>
         </div>
         <div class="col-sm-12 col-md-3 q-pa-sm">

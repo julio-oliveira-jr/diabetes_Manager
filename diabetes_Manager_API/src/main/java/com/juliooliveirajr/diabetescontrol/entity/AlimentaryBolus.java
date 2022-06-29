@@ -1,7 +1,7 @@
 package com.juliooliveirajr.diabetescontrol.entity;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +32,7 @@ public class AlimentaryBolus extends BaseEntity {
 	private String foodsIds;
 	
 	@Transient
-	private List<Food> foodsList;
+	private Map<Integer, Integer> foodsMap;
 	
 	@Column(name="RESULT_VALUE")
 	@NotNull
@@ -71,12 +71,12 @@ public class AlimentaryBolus extends BaseEntity {
 		this.foodsIds = foodsIds;
 	}
 
-	public List<Food> getFoodsList() {
-		return foodsList;
+	public Map<Integer, Integer> getFoodsMap() {
+		return foodsMap;
 	}
 
-	public void setFoodsList(List<Food> foodsList) {
-		this.foodsList = foodsList;
+	public void setFoodsMap(Map<Integer, Integer> foodsMap) {
+		this.foodsMap = foodsMap;
 	}
 
 	public BigDecimal getResultValue() {

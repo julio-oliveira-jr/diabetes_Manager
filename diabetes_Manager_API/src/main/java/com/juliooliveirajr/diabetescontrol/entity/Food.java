@@ -8,11 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
-import com.juliooliveirajr.diabetescontrol.utils.StringUtils;
 
 @Entity(name = "Food")
 @Table(name = "FOOD")
@@ -31,17 +31,22 @@ public class Food extends BaseEntity {
 	@NotBlank
 	private String description;
 	
-	@Column(name="CARBOHYDRATE_QTY")
+	@Column(name="CARBOHYDRATE_QTY_PORTION")
 	@NotNull
-	private BigDecimal carbohydrateQty;
+	private BigDecimal carbohydrateQtyPortion;
 	
-	@Column(name="FOOD_QTY")
+	@Column(name="UNITY_QTY")
 	@NotNull
-	private BigDecimal foodQty;
+	private BigDecimal unityQty;
 	
-	@Column(name="CARBOHYDRATE_GRAM_QTY")
+	@Column(name="CARBOHYDRATE_QTY_UNITY")
 	@NotNull
-	private BigDecimal carbohydrateGramQty;
+	private BigDecimal carbohydrateQtyUnity;
+	
+	@ManyToOne()
+	@JoinColumn(name="MEASURE_UNITY_ID")
+	@NotNull
+	private MeasureUnity measureUnity;
 	
 	//CONSTRUCTOR
 	public Food() {
@@ -51,12 +56,21 @@ public class Food extends BaseEntity {
 		this.foodId = foodId;
 	}
 	
+	//GETTERS AND SETTERS
 	public Integer getFoodId() {
 		return foodId;
 	}
 
 	public void setFoodId(Integer foodId) {
 		this.foodId = foodId;
+	}
+
+	public String getSummaryDescription() {
+		return summaryDescription;
+	}
+
+	public void setSummaryDescription(String summaryDescription) {
+		this.summaryDescription = summaryDescription;
 	}
 
 	public String getDescription() {
@@ -67,38 +81,38 @@ public class Food extends BaseEntity {
 		this.description = description;
 	}
 
-	public BigDecimal getCarbohydrateQty() {
-		return carbohydrateQty;
+	public BigDecimal getCarbohydrateQtyPortion() {
+		return carbohydrateQtyPortion;
 	}
 
-	public void setCarbohydrateQty(BigDecimal carbohydrateQty) {
-		this.carbohydrateQty = carbohydrateQty;
+	public void setCarbohydrateQtyPortion(BigDecimal carbohydrateQtyPortion) {
+		this.carbohydrateQtyPortion = carbohydrateQtyPortion;
 	}
 
-	public BigDecimal getFoodQty() {
-		return foodQty;
+	public BigDecimal getUnityQty() {
+		return unityQty;
 	}
 
-	public void setFoodQty(BigDecimal foodQty) {
-		this.foodQty = foodQty;
+	public void setUnityQty(BigDecimal unityQty) {
+		this.unityQty = unityQty;
 	}
 
-	public BigDecimal getCarbohydrateGramQty() {
-		return carbohydrateGramQty;
+	public BigDecimal getCarbohydrateQtyUnity() {
+		return carbohydrateQtyUnity;
 	}
 
-	public void setCarbohydrateGramQty(BigDecimal carbohydrateGramQty) {
-		this.carbohydrateGramQty = carbohydrateGramQty;
+	public void setCarbohydrateQtyUnity(BigDecimal carbohydrateQtyUnity) {
+		this.carbohydrateQtyUnity = carbohydrateQtyUnity;
 	}
 
-	public String getSummaryDescription() {
-		return summaryDescription;
+	public MeasureUnity getMeasureUnity() {
+		return measureUnity;
 	}
 
-	public void setSummaryDescription(String summaryDescription) {
-		this.summaryDescription = StringUtils.isEmptyOrNull(summaryDescription) ? this.description.substring(0, 24) : summaryDescription;
+	public void setMeasureUnity(MeasureUnity measureUnity) {
+		this.measureUnity = measureUnity;
 	}
-	
+
 	//HASHCODE E EQUALS
 	@Override
 	public int hashCode() {
